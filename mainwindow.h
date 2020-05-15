@@ -20,11 +20,15 @@ public:
 private slots:
     void on_pushButton_clicked();
     void updateTime();
+    void updateShutdownTime();
+    bool isNextDay(QTime, QTime);
+    int calculateDiffTime();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QString shutdownTime;
-    QTime localTime;
+    int shutdownTime = -1; // -1 means the shutdown timer is disabled
     QTimer *tmr;
 };
 #endif // MAINWINDOW_H
