@@ -3,6 +3,7 @@
 #include "QDebug"
 #include "QTime"
 #include "QTimer"
+#include "QProcess"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,6 +35,10 @@ void MainWindow::updateShutdownTime()
         QString shutdownTimeStr = QDateTime::fromTime_t(updatedShutdownTime).toUTC().toString("hh:mm:ss");
         ui->label_4->setText(shutdownTimeStr);
     }
+    if (shutdownTime == 0) {
+        QProcess::startDetached("shutdown -l");
+        shutdownTime = -1;
+    }
 }
 
 
@@ -50,6 +55,7 @@ void MainWindow::on_pushButton_2_clicked()
 {
     shutdownTime = -1;
     ui->label_4->setText("00:00:00");
+    QProcess::startDetached("shutdown -a");
 }
 
 bool MainWindow::isNextDay(QTime currentTime, QTime shutdownTime)
