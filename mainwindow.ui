@@ -34,6 +34,9 @@
   <property name="windowTitle">
    <string>Shutdown timer</string>
   </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextUnderIcon</enum>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTimeEdit" name="timeEdit">
     <property name="geometry">
